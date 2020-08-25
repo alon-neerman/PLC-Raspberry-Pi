@@ -1,7 +1,7 @@
 from PLC import PLC
 import time
 
-client = PLC(plc_name='M172', host='192.168.1.200', port=502)
+client = PLC(plc_name='M172', host='192.168.220.2', port=502)
 message = False
 for i in range(5):
 
