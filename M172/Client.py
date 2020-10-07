@@ -2,9 +2,6 @@
 from pyModbusTCP.client import ModbusClient
 from IO import IO
 
-#HOST = '192.168.1.200'
-#PORT = '502'
-
 class Client(object):
   def __init__(self, host, port, requires_setup=False):
     if requires_setup:
