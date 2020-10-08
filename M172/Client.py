@@ -23,27 +23,27 @@ class Client(object):
     
   
   def read_analog_input(self, num):
-    if num >= len(self.ANALOG_IN):
+    if num > len(self.ANALOG_IN):
       raise Exception('Analog input out of range')
     io = [x for x in self.ANALOG_IN if x.num == num][0]
     return io.find_value() / 100
   
 
   def read_digital_input(self, num):
-    if num >= len(self.DIGITAL_IN):
+    if num > len(self.DIGITAL_IN):
       raise Exception('Digital input out of range')
     io = [x for x in self.DIGITAL_IN if x.num == num][0]
     return bool(io.find_value())
   
 
   def write_digital_output(self, num, value):
-    if num >= len(self.DIGITAL_OUT):
+    if num > len(self.DIGITAL_OUT):
       raise Exception('Digital output out of range')
     io = [x for x in self.DIGITAL_OUT if x.num == num][0]
     io.write_value(value)
 
   def read_digital_output(self, num):
-    if num >= len(self.DIGITAL_OUT):
+    if num > len(self.DIGITAL_OUT):
       raise Exception('Digital output out of range')
     io = [x for x in self.DIGITAL_OUT if x.num == num][0]
     return bool(io.find_value())
