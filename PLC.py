@@ -6,6 +6,9 @@ class PLC(object):
     if plc_name == 'M172':
       self.PLC = M172Client(host, port)
   
+  def connected(self):
+    return self.PLC.connected()
+  
   def read_analog_input(self, num):
     return self.PLC.read_analog_input(num)
   
@@ -17,4 +20,13 @@ class PLC(object):
 
   def read_digital_output(self, num):
     return self.PLC.read_digital_output(num)
+
+  def write_analog_output(self, num, value):
+    self.PLC.write_analog_output(num, value)
+
+  def read_analog_output(self, num):
+    return self.PLC.read_analog_output(num)
+
+  def write_PWM_config(self, num, value):
+    self.PLC.write_PWM_config(num, value)
 

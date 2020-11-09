@@ -13,9 +13,15 @@ def main():
   parser.add_argument('port')
 
   args = parser.parse_args()
-  client = PLC(plc_name=args.plc_name, host=args.host, port=args.port)
+  try:
+    client = PLC(plc_name=args.plc_name, host=args.host, port=args.port)
+  except:
+    print("Wrong PLC")
 
   while True:
+
+    while True:
+
     print("\nWhat function would you like to use from the list:")
     print("\t1: read_analog_input")
     print("\t2: read_digital_input")
