@@ -1,10 +1,9 @@
-# Simple demo of the LSM9DS1 accelerometer, magnetometer, gyroscope.
-# Will print the acceleration, magnetometer, and gyroscope values every second.
 import time
 import board
 import busio
 import adafruit_lsm9ds1
 
+# This class is responsible for representing the IMU and allows for the functionality to get the reading whenever they are called.
 class IMU:
      # init method or constructor    
     def __init__(self):   
