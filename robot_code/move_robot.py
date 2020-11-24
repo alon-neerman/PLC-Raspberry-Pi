@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO          
 from time import sleep
-
+#need to change these based on Rasp PI connections
 in1 = 23
 in2 = 24
 ena = 25
@@ -9,8 +9,6 @@ in3 = 12
 in4 = 13
 enb = 15
 
-#By default move forward
-forward= True # 1 = forward, 0 = backward.
 
 #Motor 1 assuming right motor
 GPIO.setmode(GPIO.BCM)
@@ -33,7 +31,7 @@ GPIO.output(in4,GPIO.LOW)
 frequency = 1000;
 p=GPIO.PWM(ena,frequency)
 p2= GPIO.PWM(enb,frequency)
-#default duty cycle 10
+#default duty cycle 25
 duty_cycle = 25
 #Steps size for increasing duty cycle
 step_size = 5
