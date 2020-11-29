@@ -2,7 +2,7 @@ import time
 import board
 import busio
 import adafruit_lsm9ds1
-
+import math
 # This class is responsible for representing the IMU and allows for the functionality to get the reading whenever they are called.
 class IMU:
      # init method or constructor    
@@ -35,6 +35,21 @@ class IMU:
         temp = self.sensor.temperature
         return temp
 
+    # returns heading calculated from magnetometer values
+    def getHeading(self):
+        # check if mag_x is 0. If it is  then check y. If y<0 then direction is 90 degrees.
+        # if not, then direction is 0
+        # if mag_x > 0 then arctan(mag_y/mag_x)
+        mag_x, mag_y, mag_z = self.sensor.magnetic
+        if (mag_x == 0):
+            if (mag_y < 0):
+                direction = 90
+            else:
+                direction = 0
+        else:
+            direction = arctan(mag_y/mag_x) * (180/math.pi)
+        
+        return direction
 
 # saving this as formatting might be useful in gui
 
