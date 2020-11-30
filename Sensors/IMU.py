@@ -4,6 +4,8 @@ import busio
 import adafruit_lsm9ds1
 import math
 # This class is responsible for representing the IMU and allows for the functionality to get the reading whenever they are called.
+# it uses this library: https://github.com/adafruit/Adafruit_CircuitPython_LSM9DS1
+# Note that the library itself has dependancies we made need to install on the pi
 class IMU:
      # init method or constructor    
     def __init__(self):   
