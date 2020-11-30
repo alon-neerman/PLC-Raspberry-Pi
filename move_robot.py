@@ -1,9 +1,7 @@
 #import RPi.GPIO as GPIO          
 from time import sleep
 import sys
-sys.path.append('../sensors')
-from IMU import IMU
-sys.path.append('../')
+from Sensors.IMU import IMU
 from PLC import PLC
 
 # Not sure how to implement PWM frequency.
