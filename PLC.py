@@ -30,3 +30,32 @@ class PLC(object):
   def write_PWM_config(self, num, value):
     self.PLC.write_PWM_config(num, value)
 
+
+
+  #  #  The following functions encapsulate the above functions, which are interface functions of GUI screen
+  #  # 1.Power
+#
+  #  def read_battery_voltage(self):
+  #      return self.read_analog_input(3)
+#
+  #  def control_port(self, num, value):
+  #      self.write_digital_output(num, value)
+  #  # 2.Directions
+  #  def dir_control_up(self, num, value):
+  #      self.write_digital_output(num, value)
+  #  
+  #  def dir_control_down(self, num, value):
+  #      self.write_digital_output(num, value)
+  #  
+  #  def dir_control_left(self, num, value):
+  #      self.write_digital_output(num, value)
+  #  
+  #  def dir_control_right(self, num, value):
+  #      self.write_digital_output(num, value)
+#
+  #  # 5.Read Selected Port
+  #  def f_read(self, num, value):
+  #      return self.read_digital_input(num,value)
+  #  # 6.Enter Data
+  #  def f_write(self, num, value):
+  #      self.write_digital_output(num, value)
