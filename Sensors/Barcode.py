@@ -1,19 +1,16 @@
-from usb_scanner.scanner import barcode_reader
+import sys
+import serial
+import time
 
-# This class is responsible for handling the Barcode scanner input
-# it uses this library: https://github.com/julzhk/usb_barcode_scanner
-class Barcord:
-    def __init__(self): 
-        #shoudn't need to do anything here
+scanner = serial.Serial("/dev/ttyACM0",9600,timeout=0.5)
 
-    #Fetches the reading on the barcode scanner
-    def getReading(self):
-        upcnumber = ''
-        try:    
-            #read until we get an input
-            #todo: do we want a timeout of some sort?
-            while(upcnumber == '')
-                upcnumber = barcode_reader()
-            return upcnumber
-        except Exception as e:
-            return "Error getting reading"    
+print("serial test start...")
+while scanner != None:
+    f = open("barcode_data.txt", "a")
+    print("serial ready...")
+    s = scanner.read(100)
+    barcode = s.decode()
+    if barcode != "":
+        f.write(barcode)
+        f.close()
+    print(barcode)
