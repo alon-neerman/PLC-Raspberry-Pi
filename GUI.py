@@ -33,7 +33,7 @@ while connected is True:
 
     layout = [      
                     [sg.Text(Welcome_message)],
-                    [sg.Image(r'/Users/alonneerman/image.png')],
+                    #[sg.Image(r'/Users/alonneerman/image.png')],
                     [sg.Text('Please select the function to use')],
                     [sg.Combo(['read_analog_input', 'read_digital_input', "write_digital_output", "read_digital_output", "write_pwm_signal"], key='-function-')],
                     [sg.Text('Please enter the IO port you want to access ')],

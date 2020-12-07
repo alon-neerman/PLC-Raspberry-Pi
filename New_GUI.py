@@ -99,21 +99,21 @@ class MyFrame(wx.Frame):
         self.client = client
         
         # Power Switch
-        self.power_label = wx.StaticText(self.bitmap, label='Power', pos=(620, 20))
-        self.power_label.SetFont(font=font3)
-        self.power_port_button = wx.Button(self.bitmap, label="ON/OFF", size=(80, 20), pos=(660, 16))
-        self.power_port_button.SetFont(font=font3)
+        #self.power_label = wx.StaticText(self.bitmap, label='Power', pos=(620, 20))
+        #self.power_label.SetFont(font=font3)
+        #self.power_port_button = wx.Button(self.bitmap, label="ON/OFF", size=(80, 20), pos=(660, 16))
+        #self.power_port_button.SetFont(font=font3)
 
         
         
-        self.select_port_label = wx.StaticText(self.bitmap, label='Select Port:', pos=(20, 180))
-        self.select_port_label.SetFont(font=font2)
-        self.select_port_label.Enable = False
+        #self.select_port_label = wx.StaticText(self.bitmap, label='Select Port:', pos=(20, 180))
+        #self.select_port_label.SetFont(font=font2)
+        #self.select_port_label.Enable = False
         # Set a list of 8 ports
-        self.port_list = ['port'+str(i) for i in range(8)]
-        self.cb1 = wx.ComboBox(self.bitmap, value='ports', pos=(155,180), choices=self.port_list,style=2)
+        #self.port_list = ['port'+str(i) for i in range(8)]
+        #self.cb1 = wx.ComboBox(self.bitmap, value='ports', pos=(155,180), choices=self.port_list,style=2)
         # Set event as combobox
-        self.Bind(wx.EVT_COMBOBOX, self.on_combobox, self.cb1)
+        #self.Bind(wx.EVT_COMBOBOX, self.on_combobox, self.cb1)
 
         # Barcode Scanner
         self.barcode_lable = wx.StaticText(self.bitmap, label='Bar-code:', pos=(20, 240))
@@ -122,16 +122,16 @@ class MyFrame(wx.Frame):
         self.barcode_button = wx.Button(self.bitmap, label="SCAN:", size=(100, 30), pos=(450, 240))
         
         # Enter Data to Selected Port
-        self.write_portdata_label = wx.StaticText(self.bitmap, label='write-data:', pos=(370, 300))
-        self.write_portdata_label.SetFont(font2)
-        self.write_portdata_text = wx.TextCtrl(self.bitmap, pos=(491, 300), size=(100,30))
-        self.write_portdata_button = wx.Button(self.bitmap, label="Enter", size=(101, 30), pos=(600, 300))
+        #self.write_portdata_label = wx.StaticText(self.bitmap, label='write-data:', pos=(370, 300))
+        #self.write_portdata_label.SetFont(font2)
+        #self.write_portdata_text = wx.TextCtrl(self.bitmap, pos=(491, 300), size=(100,30))
+        #self.write_portdata_button = wx.Button(self.bitmap, label="Enter", size=(101, 30), pos=(600, 300))
         
         # Leave Blank with IMU
-        self.imu_label = wx.StaticText(self.bitmap, label='IMU:', pos=(20, 400))
-        self.imu_label.SetFont(font2)
-        self.imu_text = wx.TextCtrl(self.bitmap, pos=(80, 400), size=(100,30))
-        self.imu_button = wx.Button(self.bitmap, label="IMU", size=(100, 30), pos=(180, 400))
+        #self.imu_label = wx.StaticText(self.bitmap, label='IMU:', pos=(20, 400))
+        #self.imu_label.SetFont(font2)
+        #self.imu_text = wx.TextCtrl(self.bitmap, pos=(80, 400), size=(100,30))
+        #self.imu_button = wx.Button(self.bitmap, label="IMU", size=(100, 30), pos=(180, 400))
         
         # Read Battery Voltage
         self.battery_label = wx.StaticText(self.bitmap, label='Battery Voltage:', pos=(20, 450))
@@ -143,32 +143,36 @@ class MyFrame(wx.Frame):
         # Direction Control
         # self.dir_control_label = wx.StaticText(self.bitmap, label='DIRECTION CONTROL', pos=(600, 500))
         # self.dir_control_label.SetFont(font2)
-        self.dir_control_up_bt = wx.Button(self.bitmap, label="UP", size=(100, 30), pos=(580, 480))
-        self.dir_control_down_bt = wx.Button(self.bitmap, label="DOWN", size=(100, 30), pos=(580, 520))
-        self.dir_control_left_bt = wx.Button(self.bitmap, label="LEFT", size=(100, 30), pos=(480, 500))
+        self.dir_control_up_bt = wx.Button(self.bitmap, label="FORWARD", size=(100, 30), pos=(580, 450))
+        self.stop_robot = wx.Button(self.bitmap, label="STOP", size=(100, 30), pos=(580, 485))
+
+        self.dir_control_down_bt = wx.Button(self.bitmap, label="BACKWARD", size=(100, 30), pos=(580, 525))
+        self.dir_control_left_bt = wx.Button(self.bitmap, label="ROTATE LEFT", size=(100, 30), pos=(480, 500))
         self.dir_control_right_bt = wx.Button(self.bitmap, label="RIGHT", size=(100, 30), pos=(680, 500))
         
 
         # Bind button event
         # Power Port
-        self.power_port_button.Bind(wx.EVT_BUTTON, self.power_port)
+        #self.power_port_button.Bind(wx.EVT_BUTTON, self.power_port)
         # Direction Control
         # Upward
-        self.dir_control_up_bt.Bind(wx.EVT_BUTTON, self.dir_up)
+        self.dir_control_up_bt.Bind(wx.EVT_BUTTON, self.go_forward)
         # Downward
-        self.dir_control_down_bt.Bind(wx.EVT_BUTTON, self.dir_down)
+        self.dir_control_down_bt.Bind(wx.EVT_BUTTON, self.go_backward)
         # Leftward
         self.dir_control_left_bt.Bind(wx.EVT_BUTTON, self.dir_left)
         # Rightward
         self.dir_control_right_bt.Bind(wx.EVT_BUTTON, self.dir_right)
+        # Stop
+        self.stop_robot.Bind(wx.EVT_BUTTON, self.stop)
         # Barcode Scanner
         self.barcode_button.Bind(wx.EVT_BUTTON, self.scan_code)
         # Read Port Data
         #self.read_portdata_button.Bind(wx.EVT_BUTTON, self.read_portdata)
         # Write Port Data
-        self.write_portdata_button.Bind(wx.EVT_BUTTON, self.write_portdata)
+        #self.write_portdata_button.Bind(wx.EVT_BUTTON, self.write_portdata)
         # IMU
-        self.imu_button.Bind(wx.EVT_BUTTON, self.imu)
+        #self.imu_button.Bind(wx.EVT_BUTTON, self.imu)
         # Battery Voltage
         self.battery_button.Bind(wx.EVT_BUTTON, self.read_battery)
 
@@ -188,47 +192,98 @@ class MyFrame(wx.Frame):
 
 
     def read_battery(self, event):
-        battery_voltage = self.client.read_analog_input(3)
-        self.battery_text.ChangeValue(str(battery_voltage))
+        battery_voltage = self.client.read_analog_input(7) * 3.9
+        self.battery_text.ChangeValue(str(round(battery_voltage, 1)))
 
     # Control direction up
-    def dir_up(self, event):
-        num = None
-        value = None
-        self.plc.dir_control_up(num, value)
+    def go_forward(self, event):
+
+        # Reset digital outputs
+        self.stop
+
+        # Sets Duty Cycle to 55%
+        self.client.write_analog_output(1, 550)
+        self.client.write_analog_output(2, 550)
+
+
+        # Turns on forward functionality
+        self.client.write_digital_output(1, 1)
+        self.client.write_digital_output(5, 1)
         print("UP Button Triggered")
 
     # Control direction down
-    def dir_down(self, event):
-        num = None
-        value = None
-        self.plc.dir_control_down(num, value)
+    def go_backward(self, event):
+        
+        # Reset digital outputs
+        self.stop
+
+        # Sets Duty Cycle to 55%
+        self.client.write_analog_output(1, 550)
+        self.client.write_analog_output(2, 550)
+        
+        # Turns off forwards functionality
+        self.client.write_digital_output(1, 0)
+        self.client.write_digital_output(5, 0)
+
+        # Turns on backwards functionality
+        self.client.write_digital_output(2, 1)
+        self.client.write_digital_output(6, 1)
         print("DOWN Button Triggered")
+
+    def stop(self, event):
+
+        # Turns off all digital outputs
+        self.client.write_digital_output(1, 0)
+        self.client.write_digital_output(2, 0)
+
+        self.client.write_digital_output(5, 0)
+        self.client.write_digital_output(6, 0)
 
     # # Control direction left
     def dir_left(self, event):
-        num = None
-        value = None
-        self.plc.dir_control_left(num, value)
+
+        # Reset digital outputs
+        self.stop
+
+        # Set right wheels to 40% duty cycle
+        self.client.write_analog_output(1, 400)
+
+        # Set left wheels to 60% duty cycle 
+        #self.client.write_analog_output(2, 600)
+
+        # Right wheels go forward
+        self.client.write_digital_output(1, 1)
+
+        # Left wheels go backwards
+        #self.client.write_digital_output(6, 1)
+
         print("LEFT Button Triggered")
 
     # # Control direction right
     def dir_right(self, event):
-        num = None
-        value = None
-        self.plc.dir_control_right(num, value)
+
+        # Reset digital outputs
+        self.stop
+        
+        # Set right wheels to 60% duty cycle
+        #self.client.write_analog_output(1, 550)
+
+        # Set left wheels to 20% duty cycle 
+        self.client.write_analog_output(2, 300)
+
+        # Left wheels go forward
+        self.client.write_digital_output(5, 1)
+
+        # Right wheels go backwards
+        #self.client.write_digital_output(2, 1)
         print("RIGHT Button Triggered")
     
     def scan_code(self, event):
-        subprocess.call(["rsync", "-ve", "ssh", "pi@10.0.0.224:/home/pi/barcode_data.txt", "."])
+        subprocess.call(["rsync", "-ve", "ssh", "pi@10.0.0.227:/home/pi/barcode_data.txt", "."])
         with open('barcode_data.txt', 'r') as f:
             last_line = f.readlines()[-1]
         self.barcode_text.ChangeValue(str(last_line))
 
-        #num = None
-        #value = None
-        #code_data = self.plc.scan()
-        #self.barcode_text.SetValue(code_data)
         print("SCAN Button Triggered")
     
     

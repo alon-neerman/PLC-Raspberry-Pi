@@ -3,5 +3,5 @@
 Run the following command to start the GUI. 
 
 ```
-./client
+./New_GUI.py
 ```
